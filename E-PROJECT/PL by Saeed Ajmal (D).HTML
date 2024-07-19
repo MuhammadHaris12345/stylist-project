@@ -1,0 +1,932 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
+        integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playwrite+IT+Moderna:wght@100..400&display=swap"
+        rel="stylesheet">
+    <style>
+          body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(to right, #0549e6, #2c51e7, #05e6e6, #b82ce7, #05e6e6);
+            /* Gradient colors */
+            background-size: 200% 100%;
+            /* Larger background size for fluid effect */
+            animation: gradient-move 30s ease infinite;
+            padding: 10px;
+        }
+
+        .navbar .logo {
+            font-size: 24px;
+            color: #fff;
+        }
+
+        .navbar ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        .navbar ul li {
+            margin: 0 10px;
+        }
+
+        .navbar ul li a {
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+
+        .navbar ul li a:hover {
+            color: #000000;
+            background-color: #ffffff;
+        }
+
+        .navbar .login-btn {
+            background-color: #17d8ce;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .navbar .login-btn:hover {
+            background-color: #ffffff;
+        }
+
+        @media (max-width: 768px) {
+            .navbar ul {
+                flex-direction: column;
+                display: none;
+            }
+
+            .navbar ul.active {
+                display: flex;
+            }
+
+            .menu-toggle {
+                display: block;
+                cursor: pointer;
+                font-size: 24px;
+                color: #fff;
+            }
+        }
+
+        @media (min-width: 769px) {
+            .menu-toggle {
+                display: none;
+            }
+        }
+
+        /* circlestyling */
+        .container {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+
+        }
+
+        .circle {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            overflow: hidden;
+            /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); */
+            transition: transform 0.3s ease;
+        }
+
+        .circle img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            animation: ease-out;
+            animation-duration: 1s;
+        }
+
+        .circle:hover {
+            transform: scale(1.1);
+        }
+
+        .circle .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(15, 14, 14, 0.6);
+            color: #000000;
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            border-radius: 50%;
+            text-align: center;
+            padding: 10px;
+        }
+
+        .circle:hover .overlay {
+            opacity: 10;
+
+        }
+
+        .overlay {
+            margin-bottom: 100px;
+        }
+
+        /* circlestyling */
+        h1 {
+            font-size: 3em;
+            color: #ffffff;
+            font-family: 'Georgia', serif;
+            text-align: center;
+            background: linear-gradient(to right, #0549e6, #2c51e7, #05e6e6, #b82ce7, #05e6e6);
+            /* Gradient colors */
+            background-size: 200% 100%;
+            /* Larger background size for fluid effect */
+            animation: gradient-move 30s ease infinite;
+            /* animation: bravo 2s ease-out; */
+        }
+
+        @keyframes bravo {
+            0% {
+                opacity: 0;
+                transform: translateY(-50px) scale(0.5);
+            }
+
+            50% {
+                opacity: 0.5;
+                transform: translateY(10px) scale(1.1);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.5em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.2em;
+            }
+        }
+
+        /* SHAHZAIB SAEED CARDS */
+        .container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            max-width: 1200px;
+            padding: 10px;
+        }
+
+        .card {
+            position: relative;
+            width: calc(25% - 20px);
+            /* 25% width for each card minus the gap */
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .image {
+            overflow: hidden;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            position: relative;
+        }
+
+        .image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+
+        .buy-now {
+            position: absolute;
+            bottom: 10px;
+            left: 0;
+            width: 100%;
+            /* background-color: #35cbe6; */
+            background: linear-gradient(to right, #0549e6, #2c51e7, #05e6e6, #b82ce7, #05e6e6);
+            /* Gradient colors */
+            background-size: 200% 100%;
+            /* Larger background size for fluid effect */
+            animation: gradient-move 20s ease infinite;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+            
+        }
+
+        .card:hover .buy-now {
+            transform: translateY(0);
+        }
+
+        .details {
+            padding: 16px;
+        }
+
+        .details h3 {
+            margin-top: 0;
+            font-size: 1.5rem;
+            color: #333;
+        }
+
+        .details p {
+            color: #666;
+        }
+
+        .shine {
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: rgba(255, 255, 255, 0.2);
+            transform: rotate(30deg);
+            animation: shineAnimation 1.5s infinite linear;
+            pointer-events: none;
+            opacity: 0;
+            z-index: 1;
+            transition: opacity 0.3s ease;
+        }
+
+        .card:hover .shine {
+            opacity: 1;
+        }
+
+        @keyframes shineAnimation {
+            0% {
+                transform: rotate(30deg) translateX(-150%);
+            }
+
+            100% {
+                transform: rotate(30deg) translateX(150%);
+            }
+        }
+
+        @media (max-width: 992px) {
+            .card {
+                width: calc(50% - 20px);
+                /* 50% width for each card minus the gap */
+            }
+        }
+
+        @media (max-width: 576px) {
+            .card {
+                width: 100%;
+                /* Full width for each card on smaller screens */
+            }
+
+        }
+
+        /* ..... */
+        .fluid-line {
+            background: linear-gradient(to right, #0549e6, #2c51e7, #05e6e6, #b82ce7, #05e6e6);
+            /* Gradient colors */
+            background-size: 200% 100%;
+            /* Larger background size for fluid effect */
+            animation: gradient-move 20s ease infinite;
+        }
+
+        @keyframes gradient-move {
+            0% {
+                background-position: 0 0;
+                /* Start from left */
+            }
+
+            100% {
+                background-position: 100% 0;
+                /* Move to right */
+            }
+        }
+
+        @media (max-width: 768px) {
+            .fluid-line {
+                height: 1px;
+                /* Adjusted height for smaller screens */
+            }
+        }
+
+        saeed ajmal
+        /* footer */
+
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: 0;
+            font-family: "Poppins", sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            width: 100%;
+            background: #eeeceb;
+        }
+
+        footer {
+            background: linear-gradient(to right, #0549e6, #2c51e7, #05e6e6, #b82ce7, #05e6e6);
+            /* Gradient colors */
+            background-size: 200% 100%;
+            /* Larger background size for fluid effect */
+            animation: gradient-move 20s ease infinite;
+            color: white;
+            padding: 0;
+            text-align: center;
+            transition: transform 0.3s ease;
+
+        }
+
+        footer::before {
+            content: '';
+            /* position: absolute; */
+            left: 0;
+            top: 100px;
+            height: 1px;
+            width: 100%;
+            background: #afafb6;
+        }
+
+        footer .content {
+            max-width: 1250px;
+            margin: auto;
+            padding: 30px 40px 40px 40px;
+        }
+
+        footer .content .top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 50px;
+        }
+
+        .content .top .logo-details {
+            color: #fff;
+            font-size: 30px;
+        }
+
+        .content .top .media-icons {
+            display: flex
+        }
+
+        .content .top .media-icons a {
+            height: 40px;
+            width: 40px;
+            background: red;
+            margin: 0 8px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            color: #fff;
+            font-size: 17px;
+            text-decoration: none;
+            transition: all 0.4s ease;
+        }
+
+        .top .media-icons a:nth-child(1) {
+            background: #4267b2;
+        }
+
+        .top .media-icons a:nth-child(1):hover {
+            color: #4267b2;
+            background: #fff;
+        }
+
+        .top .media-icons a:nth-child(2) {
+            background: #1da1f2;
+        }
+
+        .top .media-icons a:nth-child(2):hover {
+            color: #1da1f2;
+            background: #fff;
+        }
+
+        .top .media-icons a:nth-child(3) {
+            background: #e1206c;
+        }
+
+        .top .media-icons a:nth-child(3):hover {
+            color: #e1206c;
+            background: #fff
+        }
+
+        .top .media-icons a:nth-child(4) {
+            background: #0077b5;
+        }
+
+        .top .media-icons a:nth-child(4):hover {
+            color: #4267b2;
+            background: #fff;
+        }
+
+        .top .media-icons a:nth-child(5) {
+            background: #ff0000;
+        }
+
+        .top .media-icons a:nth-child(5):hover {
+            color: #ff0000;
+            background: #fff;
+        }
+
+        footer .content .link-boxes {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        footer .content .link-boxes .box {
+
+            width: calc(100% / 5 -10px);
+        }
+
+        .content .link-boxes .box .link_name {
+            color: #fff;
+            font-size: 18px;
+            font-weight: 400;
+            margin-bottom: 10px;
+            position: relative;
+        }
+
+        .link-boxes .box .link_name::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -2px;
+            height: 2px;
+            width: 35px;
+            background: #fff;
+        }
+
+        .content .link-boxes .box li {
+            margin: 6px 0;
+            list-style: none;
+        }
+
+        .content .link-boxes .box li a {
+            color: #fff;
+            font-size: 14px;
+            font-weight: 400;
+            text-decoration: none;
+            opacity: 0.8;
+            transition: all 0.4s ease;
+        }
+
+        .content .link-boxes .box li a:hover {
+            opacity: 1;
+            text-decoration: underline;
+
+        }
+
+        .content .link-boxes .input-box {
+            margin-right: 55px;
+        }
+
+        .link-boxes .input-box input {
+            height: 40px;
+            width: calc(100% + 55px);
+            outline: none;
+            border: 2px solid #fff;
+            background: #140b5c;
+            border-radius: 4px;
+            padding: 0 15px;
+            font-size: 15px;
+            color: #fff;
+            margin-top: 5px;
+        }
+
+        .link-boxes .input-box input::placeholder {
+            color: #fff;
+            font-size: 16px;
+        }
+
+        .link-boxes .input-box input[type="button"] {
+            background: #fff;
+            color: #140b5c;
+            border: none;
+            font-size: 18px;
+            font-weight: 500;
+            margin: 4px 0;
+            opacity: 0.8;
+            cursor: pointer;
+            transition: all 0.4 ease;
+        }
+
+        .input-box input[type="button"]:hover {
+            opacity: 1;
+        }
+
+        footer .bottom-details {
+            width: 100%;
+            background: #0f0844;
+        }
+
+        footer .bottom-details .buttom_text {
+            max-width: 1250px;
+            margin: auto;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .bottom-details .buttom_text span,
+        .bottom-details .buttom_text a {
+            font-size: 14px;
+            font-weight: 300;
+            color: #fff;
+            opacity: 0.8;
+            text-decoration: none;
+        }
+
+        .bottom-details .buttom_text a:hover {
+            opacity: 1;
+            text-decoration: underline;
+        }
+
+        .bottom-details .buttom_text a {
+            margin-right: 10px;
+        }
+
+        @media(max-width: 900px) {
+            footer .content .link-boxes {
+                flex-wrap: wrap;
+            }
+
+            footer .content .link-boxes .input-box {
+                width: 50%;
+                margin-top: 10px;
+            }
+
+        }
+
+        @media(max-width: 700px) {
+            footer {
+                position: relative;
+            }
+
+            .content .top .logo-details {
+                font-size: 26px;
+            }
+
+            .content .top .media-icons a {
+                height: 35px;
+                width: 35px;
+                font-size: 14px;
+                line-height: 35px;
+            }
+
+            footer .content .link-boxes .box {
+                width: calc(100% / 3 - 10px);
+            }
+
+            footer .content .link-boxes .input-box {
+                width: 60%;
+            }
+
+            .bottom-details .buttom_text span,
+            .bottom-details .buttom_text a {
+                font-size: 12px;
+            }
+        }
+
+        @media(max-width: 520px) {
+            footer::before {
+                top: 145px;
+            }
+
+            footer .content .top {
+                flex-direction: column;
+            }
+
+            .content .top .media-icons {
+                margin-top: 16px;
+            }
+
+            footer .content .link-boxes .box {
+                width: calc(100% / 2 - 10px);
+            }
+
+            footer .content .link-boxes .input-box {
+                width: 100%;
+            }
+        }
+        .p1 {
+            background-image: url(back.jpg);
+            height: 100%;
+            background-repeat: no-repeat;
+            width: 100%;
+            background-size: cover;
+            background-position: center;
+        }
+
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+        .detail {
+    text-align: center;
+    margin-top: 20px;
+    padding: 20px;
+}
+
+.detail p {
+    font-size: 24px;
+    line-height: 1.5;
+}
+    </style>
+</head>
+<div class="p">
+
+
+<body>
+    <div class="p1">
+    <!-- navbar styling -->
+    <nav class="navbar" style="/* Gradient colors */
+    background-size: 200% 100%; /* Larger background size for fluid effect */">
+    <div class="logo" style="font-family: 'Times New Roman', Times, serif; color: #000000;"> <i class="fab fa-slack"></i>
+        <span class="logo_name"><span style="font-family: 'Times New Roman', Times, serif ">STYLIST</span>
+    </div>
+    <ul>
+        <li><a href="INDEX.HTML" style="font-family: Verdana, Geneva, Tahoma, sans-serif;">HOME</a></li>
+        <li><a href="FORM.HTML" style="font-family: Verdana, Geneva, Tahoma, sans-serif;">CONTACT US</a></li>
+        <li><a href="compare.html" style="font-family: Verdana, Geneva, Tahoma, sans-serif;">COMPARISION</a></li>
+    </ul>
+    <div class="menu-toggle">☰</div>
+</nav>
+
+    <script>
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navUl = document.querySelector('.navbar ul');
+
+        menuToggle.addEventListener('click', () => {
+            navUl.classList.toggle('active');
+        });
+    </script> <br> <br> <br>
+    <div class="fluid-line"></div>
+    <div class="container1">
+        <div class="circle">
+            <img src="All Pictures/Saeed Ajmal Official1.jpg" alt="Designer 1">
+            <div class="overlay" style="font-size:x-large;
+     margin-bottom: 30px;
+     font-family:  Verdana, Geneva, Tahoma, sans-serif;"><b style="
+         margin-block-end: -150px;"></b></div>
+        </div>
+    </div> <br>
+    <div class="container3">
+        <div class="text"><b> <span style="color: rgb(32, 128, 218);">POLO-SHIRTS</span> BY SAEED AJMAL</div>
+    </div><br><br>
+    <!-- navbar styling -->
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+
+    <!-- cards -->
+    <div class="container">
+        <div class="card" data-aos="flip-left" data-aos-easing="ease-out-cubic" data-aos-duration="2000">
+            <div class="image1">
+                <div class="shine"></div>
+                <img src="All Pictures/LAWRENCEPURE1(D147).webp" alt="Card Image">
+            </div>
+            <div class="details">
+                <b><p style="color: #000000;">BASIC POLO SHIRT</p></b>
+                <a href="PLbySaeedAjmalDetails (D1).HTML">
+                    <div class="buy-now">Details</div>
+                </a>
+            </div>
+        </div>
+        <div class="card" data-aos="flip-left" data-aos-easing="ease-out-cubic" data-aos-duration="2000">
+            <div class="image1">
+                <div class="shine"></div>
+                <img src="All Pictures/LAWRENCEPURE1(D150).webp" alt="Card Image">
+            </div>
+            <div class="details">
+                <b><p style="color: #000000;">BASIC PIQUE POLO SHIRT</p></b>
+                <a href="PLbySaeedAjmalDetails (D2).HTML">
+                    <div class="buy-now">Details</div>
+                </a>
+            </div>
+        </div>
+        <div class="card" data-aos="flip-left" data-aos-easing="ease-out-cubic" data-aos-duration="2000">
+            <div class="image1">
+                <div class="shine"></div>
+                <img src="All Pictures/LAWRENCEPURE1(D153).webp" alt="Card Image">
+            </div>
+            <div class="details">
+                <b><p style="color: #000000;">BASIC PIQUE POLO SHIRT</p></b>
+                <a href="PLbySaeedAjmalDetails (D3).HTML">
+                    <div class="buy-now">Details</div>
+                </a>
+            </div>
+        </div>
+        <div class="card" data-aos="flip-left" data-aos-easing="ease-out-cubic" data-aos-duration="2000">
+            <div class="image1">
+                <div class="shine"></div>
+                <img src="All Pictures/LAWRENCEPURE1(D156).webp" alt="Card Image">
+            </div>
+            <div class="details">
+                <b><p style="color: #000000;">SOLID PIQUE POLO SHIRT</p></b>
+                <a href="PLbySaeedAjmalDetails (D4).HTML">
+                    <div class="buy-now">Details</div>
+                </a>
+            </div>
+        </div>
+        <div class="card" data-aos="flip-left" data-aos-easing="ease-out-cubic" data-aos-duration="2000">
+            <div class="image1">
+                <div class="shine"></div>
+                <img src="All Pictures/LAWRENCEPURE1(D159).webp" alt="Card Image">
+            </div>
+            <div class="details">
+                <b><p style="color: #000000;">BASIC PIQUE POLO SHIRT</p></b>
+                <a href="PLbySaeedAjmalDetails (D5).HTML">
+                    <div class="buy-now">Details</div>
+                </a>
+            </div>
+        </div>
+        <div class="card" data-aos="flip-left" data-aos-easing="ease-out-cubic" data-aos-duration="2000">
+            <div class="image1">
+                <div class="shine"></div>
+                <img src="All Pictures/LAWRENCEPURE1(D162).webp" alt="Card Image">
+            </div>
+            <div class="details">
+                <b><p style="color: #000000;">BASIC PIQUE POLO SHIRT</p></b>
+                <a href="PLbySaeedAjmalDetails (D6).HTML">
+                    <div class="buy-now">Details</div>
+                </a>
+            </div>
+        </div>
+        <div class="card" data-aos="flip-left" data-aos-easing="ease-out-cubic" data-aos-duration="2000">
+            <div class="image1">
+                <div class="shine"></div>
+                <img src="All Pictures/LAWRENCEPURE1(D165).webp" alt="Card Image">
+            </div>
+            <div class="details">
+                <b><p style="color: #000000;">BASIC POLO SHIRT</p></b>
+                <a href="PLbySaeedAjmalDetails (D7).HTML">
+                    <div class="buy-now">Details</div>
+                </a>
+            </div>
+        </div>
+        <div class="card" data-aos="flip-left" data-aos-easing="ease-out-cubic" data-aos-duration="2000">
+            <div class="image1">
+                <div class="shine"></div>
+                <img src="All Pictures/LAWRENCEPURE1(D168).webp" alt="Card Image">
+            </div>
+            <div class="details">
+                <b><p style="color: #000000;">BAISC NAVY PIQUE POLO SHIRT</p></b>
+                <a href="PLbySaeedAjmalDetails (D8).HTML">
+                    <div class="buy-now">Details</div>
+                </a>
+            </div>
+        </div>
+        <div class="card" data-aos="flip-left" data-aos-easing="ease-out-cubic" data-aos-duration="2000">
+            <div class="image1">
+                <div class="shine"></div>
+                <img src="All Pictures/LAWRENCEPURE1(D171).webp" alt="Card Image">
+            </div>
+            <div class="details">
+                <b><p style="color: #000000;">BASIC POLO SHIRT</p></b>
+                <a href="PLbySaeedAjmalDetails (D9).HTML">
+                    <div class="buy-now">Details</div>
+                </a>
+            </div>
+        </div>
+        <div class="card" data-aos="flip-left" data-aos-easing="ease-out-cubic" data-aos-duration="2000">
+            <div class="image1">
+                <div class="shine"></div>
+                <img src="All Pictures/LAWRENCEPURE1(D174).webp" alt="Card Image">
+            </div>
+            <div class="details">
+                <b><p style="color: #000000;">JACQUARD POLO SHIRT</p></b>
+                <a href="PLbySaeedAjmalDetails (D10).HTML">
+                    <div class="buy-now">Details</div>
+                </a>
+            </div>
+        </div>
+        <div class="card" data-aos="flip-left" data-aos-easing="ease-out-cubic" data-aos-duration="2000">
+            <div class="image1">
+                <div class="shine"></div>
+                <img src="All Pictures/LAWRENCEPURE1(D177).webp" alt="Card Image">
+            </div>
+            <div class="details">
+                <b><p style="color: #000000;">BASIC POLO SHIRT</p></b>
+                <a href="PLbySaeedAjmalDetails (D11).HTML">
+                    <div class="buy-now">Details</div>
+                </a>
+            </div>
+        </div>
+        <div class="card" data-aos="flip-left" data-aos-easing="ease-out-cubic" data-aos-duration="2000">
+            <div class="image1">
+                <div class="shine"></div>
+                <img src="All Pictures/LAWRENCEPURE1(D180).webp" alt="Card Image">
+            </div>
+            <div class="details">
+                <b><p style="color: #000000;">BASIC BLACK POLO</p></b>
+                <a href="PLbySaeedAjmalDetails (D12).HTML">
+                    <div class="buy-now">Details</div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <hr><br>
+
+    <footer>
+        <div class="content">
+            <div class="top">
+                <div class="logo-details" style="color: #000000;">
+                    <i class="fab fa-slack"></i>
+                    <span class="logo_name"><span style="font-family: 'Times New Roman', Times, serif ">STYLIST</span>
+                </div>
+                
+            </div>
+            <div class="link-boxes">
+                <ul class="box">
+
+                    <li><a href="INDEX.HTML">HOME</a></li>
+                    <li><a href="FORM.HTML">CONTACT US</a></li>
+                    <li><a href="location.html">LOCATION</a></li>
+                    
+                </ul>
+                
+                <ul class="box input-box">
+                    <h3 style="color:#fff;">Call us</h3>
+                    <a href="" style="text-decoration: none; color: #fff;"> 021-00000000</a>
+                </ul>
+                <ul class="box input-box">
+                    <li>
+                        <input type="text" placeholder=" ENTER YOUR EMAIL">
+                    </li>
+                    <li><a href="thanks.html"><input type="button" value="subscribe"> </li></a>
+
+                </ul>
+            </div>
+        </div>
+
+
+        <div class="bottom-details">
+            <div class="buttom_text">
+                <span class="copyright_text">© All Rights Reserved.Stylist<a href="#"></a>Themes by Stylist</span>
+                <span class="policy_terms">Privacy policy
+                    Terms & condition
+                </span>
+            </div>
+        </div>
+    
+    </footer>
+    </div>
+    <script>
+        AOS.init();
+    </script>
+    </div>
+</body>
+</div>
+</html>
